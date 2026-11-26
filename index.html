@@ -209,6 +209,10 @@ details.panel>summary{cursor:pointer;font-weight:600;font-size:15px}
 .promo-go{grid-column:2;grid-row:1 / span 3;color:var(--accent);font-weight:600;white-space:nowrap}
 @media (max-width:520px){.promo{grid-template-columns:1fr}.promo-go{grid-column:1;grid-row:auto}}
 .foot{display:flex;flex-wrap:wrap;gap:10px 20px;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:14px;font-size:13px;color:var(--muted)}
+.devcta{flex-basis:100%;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;padding:12px 16px;border-radius:10px;background:var(--accent-soft);color:var(--fg);text-decoration:none;border:1px solid transparent}
+.devcta:hover{border-color:var(--accent)}
+.devcta-title{font-size:17px;font-weight:700;color:var(--accent);letter-spacing:-.01em}
+.devcta-desc{font-size:13px;color:var(--muted);min-width:0}
 .credit b{color:var(--fg);font-weight:600}
 .credit a{color:var(--accent);word-break:break-all}
 .credit button.sm{padding:2px 8px;font-size:12px;margin-left:4px}
@@ -316,6 +320,10 @@ details.panel>summary{cursor:pointer;font-weight:600;font-size:15px}
     <span class="promo-go">바로 가기 →</span>
   </a>
   <footer class="foot">
+  <a class="devcta mail-js" href="#">
+    <span class="devcta-title">맞춤형 앱 · 웹 · AI 개발 문의</span>
+    <span class="devcta-desc">근무표처럼 우리 업무에 딱 맞는 도구가 필요하다면 편하게 연락 주세요</span>
+  </a>
   <div class="credit">만든 사람 <b>이형민</b> · 문의 <a id="mailLink" href="#">메일 주소 불러오는 중</a> <button type="button" id="mailCopy" class="sm">복사</button></div>
   <div class="admin" id="adminBar">
     <a id="adminLink" role="button" tabindex="0">관리자</a>
@@ -1157,6 +1165,7 @@ all();
 (function(){
   const em=['dlgudals1541','gmail.com'].join('@'),a=$('#mailLink');
   a.textContent=em;a.href='mailto:'+em+'?subject='+encodeURIComponent('근무짜 문의');
+  document.querySelectorAll('.mail-js').forEach(x=>{x.href='mailto:'+em+'?subject='+encodeURIComponent('맞춤형 앱·웹·AI 개발 문의');});
   $('#mailCopy').addEventListener('click',()=>{
     const done=()=>toast('메일 주소를 복사했어요');
     if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(em).then(done,()=>{const r=document.createRange();r.selectNodeContents(a);const s=getSelection();s.removeAllRanges();s.addRange(r);toast('주소를 선택했어요. Ctrl+C로 복사하세요');});
